@@ -1,0 +1,21 @@
+{
+  "name": "lms-ug-user-functions",
+  "version": "1.0.0",
+  "description": "Azure functions implementation of UG to Canvas messages.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KTH/lms-ug-user-functions.git"
+  },
+  "author": "team-e-larande",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KTH/lms-ug-user-functions/issues"
+  },
+  "homepage": "https://github.com/KTH/lms-ug-user-functions#readme",
+  "dependencies": {
+    "@kth/canvas-api": "^1.0.0"
+  }
+}

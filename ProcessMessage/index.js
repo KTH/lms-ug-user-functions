@@ -2,7 +2,7 @@ const handleUserMessage = require('./handleUserMessage')
 const handleGroupMessage = require('./handleGroupMessage')
 
 module.exports = async function(context, mySbMsg) {
-    context.log('JavaScript ServiceBus topic trigger function processed message', mySbMsg)
+    context.log('JavaScript ServiceBus topic trigger function processed message: ', mySbMsg)
     context.log('=============================')
     context.log(typeof mySbMsg)
     context.log('=============================')
@@ -13,9 +13,9 @@ module.exports = async function(context, mySbMsg) {
     }
 
     if(mySbMsg.ugClass === 'user'){
-        handleUserMessage(mySbMsg, context)
+        await handleUserMessage(mySbMsg, context)
     }else if(mySbMsg.ugClass === 'group'){
-        handleGroupMessage(mySbMsg, context)
+        await handleGroupMessage(mySbMsg, context)
     }else{
         context.log(`Unexpected ugClass received: ${mySbMsg.ugClass}`)
     }
