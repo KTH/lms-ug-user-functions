@@ -1,6 +1,8 @@
 const handleUserMessage = require('./handleUserMessage')
 const handleGroupMessage = require('./handleGroupMessage')
 
+//TODO: Improve logging!
+//TODO: Improve Azure pipeline; make sure we actually run some tests!
 module.exports = async function(context, mySbMsg) {
     context.log('JavaScript ServiceBus topic trigger function processed message: ', mySbMsg)
     context.log('=============================')
