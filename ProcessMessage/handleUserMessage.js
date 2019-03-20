@@ -19,12 +19,31 @@ async function updateUser(message){
     const body = {
             user: {
                 'name': `${message.given_name} ${message.family_name}`,
-                'email': message.primary_email, // must be when 'updating' user
+                'email': message.primary_email,
                 'sortable_name': `${message.family_name}, ${message.given_name}`,
                 'short_name': null // a fix to make sure that display name is updated
             }
         }
     await canvas.requestUrl(`/users/sis_user_id:${message.kthid}`, 'PUT', body)
+}
+
+async function createUser(message){
+    const body = {
+        pseudonym: {
+          unique_id: `${message.username}@kth.se`, // CSVs analogi av 'login_id'
+          sis_user_id: message.kthid // CSVs analogi av 'user_id' needed for enrollments
+        },
+        user: {
+          'name': `${message.given_name} ${message.family_name}`,
+          'sortable_name': `${message.family_name}, ${message.given_name}`
+        },
+        communication_channel: {
+          type: 'email',
+          address: message.primary_email,
+          skip_confirmation: true
+        }
+      }
+      await canvas.requestUrl(`/accounts/1/users`, 'POST', body)
 }
 
 module.exports = async function(message, context){
@@ -45,11 +64,10 @@ module.exports = async function(message, context){
         return
     }
 
-    //TODO: Need to verify this functionality with custom propagator!
     if(await userExists(message)){
         await updateUser(message)
     }else{
-
+        await createUser(message)
     }
 
 }

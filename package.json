@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/KTH/lms-ug-user-functions#readme",
   "dependencies": {
-    "@kth/canvas-api": "^1.0.0"
+    "@kth/canvas-api": "^1.0.1"
   }
 }
